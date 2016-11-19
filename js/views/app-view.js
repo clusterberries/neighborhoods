@@ -20,9 +20,16 @@ var app = app || {};
 			this.map = new app.MapView();
 
 			this.listenTo(app.places, 'add', this.addPlace);
+			this.listenTo(app.places, 'reset', this.addAll);
+			//this.listenTo(app.places, 'all', this.render);
+
+			// Only renders when the 'reset' event is triggered at the end of the fetch.
+			app.places.fetch({reset: true});
 		},
 
-		render () {},
+		// render () {
+		// 	console.log(app.places.length);
+		// },
 
 		add () {
 			this.isAddingMode = !this.isAddingMode;
@@ -42,6 +49,11 @@ var app = app || {};
 		addPlace (model) {
 			var view = new app.PlaceView({ model });
 			this.$list.append(view.render().el);
+			this.map.addMarker(model);
+		},
+
+		addAll (model) {
+			app.places.each(this.addPlace, this);
 		}
 	});
 })();

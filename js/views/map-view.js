@@ -1,26 +1,7 @@
 var app = app || {};
 
-// Function to call when the map is loaded.
-var initMap;
-
 (function () {
 	'use strict';
-
-    var _map;
-
-    initMap = () => {
-        _map = new google.maps.Map($('#map')[0], {
-            center: {lat: 50, lng: 10},
-            zoom: 5
-        });
-
-        navigator.geolocation.getCurrentPosition(position => {
-            _map.setCenter({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            });
-        });
-    };
 
 	app.MapView = Backbone.View.extend({
 		el: '#map',
@@ -29,21 +10,41 @@ var initMap;
 
 		initialize () {
 			this.$input = $('#input');
+            this.markers = [];
 
 			this.listenTo(app.places, 'add', this.addPlace);
+
+            this.map = new google.maps.Map(this.$el[0], {
+                center: {lat: 50, lng: 10},
+                zoom: 5
+            });
+
+            navigator.geolocation.getCurrentPosition(position => {
+                this.map.setCenter({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                });
+            });
 		},
 
 		render () {},
 
 		startAdding () {
-            _map.setOptions({draggableCursor: 'crosshair'});
+            this.map.setOptions({draggableCursor: 'crosshair'});
 
             return new Promise((resolve, reject) => {
-                _map.addListener('click', e => {
-                    var position = e.latLng;
-                    var marker = new google.maps.Marker({
+                var marker,
+                    position;
+
+                this.map.addListener('click', e => {
+                    if (marker) {
+                        marker.setMap(null);
+                    }
+
+                    position = e.latLng;
+                    marker = new google.maps.Marker({
                         position,
-                        map: _map,
+                        map: this.map,
                         title: ''
                     });
 
@@ -54,27 +55,39 @@ var initMap;
                     });
                     this.$input.addClass('visible');
                     this.$input.focus();
-                    this.$input.on('keypress', e => {
-                        if (e.which === 13) {
-                            // User pressed enter, resolve with the title.
-                            let title = this.$input.val() || 'untitled';
-                            marker.setTitle(title);
-                            resolve({
-                                title,
-                                position
-                            });
-                            this.$input.val('');
-                            this.stopAdding();
-                        }
-                    });
+                });
+
+                this.$input.on('keypress', e => {
+                    if (e.which === 13) {
+                        // User pressed enter, resolve with the title.
+                        let title = this.$input.val() || 'untitled';
+                        // The marker will be shown after place is created and saved
+                        marker.setMap(null);
+                        resolve({
+                            title,
+                            position
+                        });
+                        this.$input.val('');
+                        this.stopAdding();
+                    }
                 });
             });
 		},
 
         stopAdding () {
-            _map.setOptions({draggableCursor: 'default'});
+            this.map.setOptions({draggableCursor: 'default'});
+            google.maps.event.clearListeners(this.map, 'click');
+
             this.$input.removeClass('visible');
             this.$input.off();
+        },
+
+        addMarker (model) {
+            this.markers.push(new google.maps.Marker({
+                position: model.attributes.position,
+                map: this.map,
+                title: model.attributes.title
+            }));
         }
 	});
 })();
