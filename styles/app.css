@@ -1,4 +1,72 @@
-.map {
-    height: 100vh;
-    width: 70%;
+/*** MAIN ***/
+html, body, main {
+    height: 100%;
 }
+
+body {
+    font-family: Verdana, Arial, sans-serif;
+}
+
+main {
+    display: flex;
+}
+
+/*** MAP ***/
+.map {
+    flex-basis: 70%;
+}
+
+.name-input {
+    position: absolute;
+    display: none;
+    width: 150px;
+    padding: 3px 5px;
+    background-color: rgba(255,255,255,.7);
+    border: none;
+    border-radius: 5px;
+}.visible {
+    display: inline;
+}
+
+/*** PANEL ***/
+.panel {
+    flex-basis: 30%;
+    padding: 10px;
+
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    min-width: 180px;
+    max-width: 320px;
+}
+
+.panel-label {
+    visibility: hidden;
+    margin: 10px 0;
+    align-self: center;
+    font-size: 11px;
+    color: #666;
+}.adding-mode .panel-label {
+    visibility: visible;
+}
+
+.btn  {
+    align-self: center;
+    padding: 7px 14px;
+
+	background-color: #e0ffa3;
+	border-radius: 6px;
+	border: 2px solid #127a00;
+	color: #127a00;
+	font-size: 14px;
+	font-weight: bold;
+	font-style: normal;
+}.btn:hover {
+	background-color:#b4ff69;
+}.btn:active {
+	position:relative;
+	top:1px;
+}
+
+
