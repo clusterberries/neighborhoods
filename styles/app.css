@@ -14,6 +14,7 @@ main {
 /*** MAP ***/
 .map {
     flex-basis: 70%;
+    flex-grow: 1;
 }
 
 .name-input {
@@ -77,6 +78,7 @@ main {
     transition: background-color 300ms linear;
 }.places-list li:hover {
     background-color: #ddd;
+}.places-list li a {
+    text-decoration: none;
+    color: #222;
 }
-
-

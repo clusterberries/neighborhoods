@@ -6,11 +6,11 @@ var app = app || {};
 
 	var NhRouter = Backbone.Router.extend({
 		routes: {
-			'*filter': 'setFilter'
+			'*place': 'setPlace'
 		},
 
-		setFilter (param = '') {
-			app.NhFilter = param;
+		setPlace (param = '') {
+			app.currentPlace = param;
 		}
 	});
 

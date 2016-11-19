@@ -9,6 +9,12 @@ var app = app || {};
 		model: app.Place,
 
 		localStorage: new Backbone.LocalStorage('places'),
+
+		nextId: function () {
+			return this.length ? this.last().get('id') + 1 : 1;
+		},
+
+		comparator: 'id'
 	});
 
 	app.places = new Places();

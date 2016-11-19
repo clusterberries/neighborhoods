@@ -37,6 +37,7 @@ var app = app || {};
 
 			if (this.isAddingMode) {
 				this.map.startAdding().then((data) => {
+					data.id = app.places.nextId();
 					app.places.create(data);
 					this.isAddingMode = false;
 					this.$el.removeClass('adding-mode');
@@ -54,6 +55,8 @@ var app = app || {};
 
 		addAll (model) {
 			app.places.each(this.addPlace, this);
+			// Focus on preset marker
+			this.map.toMarker(app.currentPlace);
 		}
 	});
 })();
