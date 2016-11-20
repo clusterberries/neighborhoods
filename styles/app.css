@@ -72,13 +72,14 @@ main {
 }
 
 .places-list li {
-    padding: 7px 12px;
     margin-bottom: 1px;
     background-color: #f1f1f1;
     transition: background-color 300ms linear;
 }.places-list li:hover {
     background-color: #ddd;
 }.places-list li a {
+    display: block;
+    padding: 7px 12px;
     text-decoration: none;
     color: #222;
 }
