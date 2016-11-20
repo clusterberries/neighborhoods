@@ -9,12 +9,14 @@ var app = app || {};
 		el: '#app',
 
 		events: {
-			'click #add-btn': 'add'
+			'click #add-btn': 'add',
+			'input #filter': 'filter'
 		},
 
 		initialize() {
 			this.$list = $('#places-list');
 			this.$label = $('#label');
+			this.$filterInput = $('#filter');
 
 			this.isAddingMode = false;
 			this.map = new app.MapView();
@@ -59,6 +61,11 @@ var app = app || {};
 			id = id && Number.parseInt(id);
 			app.places.select(id);
 			this.map.toMarker(id);
+		},
+
+		filter() {
+			let val = this.$filterInput.val().trim();
+			app.places.filter(val);
 		}
 	});
 })();

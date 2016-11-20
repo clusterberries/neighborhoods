@@ -22,6 +22,14 @@ var app = app || {};
 				let model = this.models[i];
 				model.select(id === model.id);
 			}
+		},
+
+		filter(value) {
+			// Show places that contain the value
+			for (let i = 0; i < this.length; ++i) {
+				let model = this.models[i];
+				model.hide(value && !model.attributes.title.includes(value));
+			}
 		}
 	});
 

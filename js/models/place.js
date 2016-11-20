@@ -8,11 +8,16 @@ var app = app || {};
 		// Default attributes for the place
 		defaults: {
 			title: 'untitled',
-			selected: false
+			selected: false,
+			hidden: false
 		},
 
 		select(selected) {
 			this.set({selected});
+		},
+
+		hide(hidden = true) {
+			this.set({hidden});
 		}
 	});
 })();

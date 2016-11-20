@@ -16,6 +16,7 @@
 		<div id="panel" class="panel">
 			<button id="add-btn" class="add-btn btn">Add a new place</button>
 			<label id="label" class="panel-label">Click on the map to add a place</label>
+			<input id="filter" class="filter" placeholder="Filter">
 			<ul id="places-list" class="places-list"></ul>
 		</div>
 	</main>
@@ -24,7 +25,7 @@
 	</footer>
 
 	<script type="text/template" id="item-template">
-		<div class="item <%- selected ? 'active' : '' %>">
+		<div class="item <%- selected ? 'active' : '' %> <%- hidden ? 'hidden' : '' %>">
 			<a href="#<%- id %>"><%- title %></a>
 		</div>
 	</script>

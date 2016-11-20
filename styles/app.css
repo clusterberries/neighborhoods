@@ -86,6 +86,12 @@ main {
 	top:1px;
 }
 
+/*** FILTER INPUT ***/
+.filter {
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
 /*** PLACES LIST ***/
 .places-list li {
     margin-bottom: 1px;
@@ -100,4 +106,6 @@ main {
     color: #222;
 }.places-list .active {
     background-color: #ddd;
+}.places-list .hidden {
+    display: none;
 }
