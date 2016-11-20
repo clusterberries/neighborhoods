@@ -82,4 +82,6 @@ main {
     padding: 7px 12px;
     text-decoration: none;
     color: #222;
+}.places-list .active {
+    background-color: #ddd;
 }

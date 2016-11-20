@@ -11,8 +11,7 @@ var app = app || {};
 
 		// The DOM events specific to an item.
 		events: {
-			'click .edit-btn': 'edit',
-			'click .destroy': 'destroy'
+			'click a': 'select'
 		},
 
 		initialize () {
@@ -22,17 +21,12 @@ var app = app || {};
 
 		render () {
 			this.$el.html(this.template(this.model.toJSON()));
-			// this.$input = this.$('.edit');
+            this.model.get('selected') && app.places.select(this.model);
 			return this;
 		},
 
-        edit () {
-
-        },
-
-		// Remove the item, destroy the model from *localStorage* and delete its view.
-		destroy () {
-			this.model.destroy();
-		}
+        select () {
+            app.places.select(this.model);
+        }
 	});
 })(jQuery);

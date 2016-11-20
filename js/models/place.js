@@ -7,7 +7,12 @@ var app = app || {};
 	app.Place = Backbone.Model.extend({
 		// Default attributes for the place
 		defaults: {
-			title: 'untitled'
+			title: 'untitled',
+			selected: false
+		},
+
+		select(selected) {
+			this.save({selected});
 		}
 	});
 })();
