@@ -4,7 +4,7 @@ var app = app || {};
 (function () {
 	'use strict';
 
-	var NhRouter = Backbone.Router.extend({
+	var Router = Backbone.Router.extend({
 		routes: {
 			'*place': 'setPlace'
 		},
@@ -14,6 +14,6 @@ var app = app || {};
 		}
 	});
 
-	app.NhRouter = new NhRouter();
+	app.router = new Router();
 	Backbone.history.start();
 })();

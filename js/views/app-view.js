@@ -21,15 +21,11 @@ var app = app || {};
 
 			this.listenTo(app.places, 'add', this.addPlace);
 			this.listenTo(app.places, 'reset', this.addAll);
-			//this.listenTo(app.places, 'all', this.render);
+			app.router.on('route:setPlace', this.route.bind(this));
 
 			// Only renders when the 'reset' event is triggered at the end of the fetch.
 			app.places.fetch({reset: true});
 		},
-
-		// render () {
-		// 	console.log(app.places.length);
-		// },
 
 		add () {
 			this.isAddingMode = !this.isAddingMode;
@@ -56,7 +52,13 @@ var app = app || {};
 		addAll (model) {
 			app.places.each(this.addPlace, this);
 			// Focus on preset marker
-			this.map.toMarker(app.currentPlace);
+			app.currentPlace && this.map.toMarker(Number.parseInt(app.currentPlace));
+		},
+
+		route (id) {
+			id = id && Number.parseInt(id);
+			app.places.select(id);
+			this.map.toMarker(id);
 		}
 	});
 })();

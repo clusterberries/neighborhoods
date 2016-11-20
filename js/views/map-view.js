@@ -14,7 +14,6 @@ var app = app || {};
             this.currentMarker = null;
 
 			this.listenTo(app.places, 'add', this.addPlace);
-            app.NhRouter.on('route:setPlace', this.toMarker.bind(this));
 
             this.map = new google.maps.Map(this.$el[0], {
                 center: {lat: 50, lng: 10},
@@ -31,16 +30,15 @@ var app = app || {};
 		},
 
 		toMarker (id) {
-            if (id) {
-                id = Number.parseInt(id);
-                this.markers.some((marker) => {
-                    // Find marker with id and focus on it
-                    if (marker.id === id) {
-                        this.map.setCenter(marker.getPosition());
-                        return true;
-                    }
-                });
-            }
+            if (!id) { return; }
+
+            this.markers.some((marker) => {
+                // Find marker with id and focus on it
+                if (marker.id === id) {
+                    this.map.setCenter(marker.getPosition());
+                    return true;
+                }
+            });
         },
 
 		startAdding () {
@@ -95,12 +93,18 @@ var app = app || {};
         },
 
         addMarker (model) {
-            this.markers.push(new google.maps.Marker({
-                position: model.attributes.position,
+            let {position, title, id} = model.attributes;
+            let marker = new google.maps.Marker({
                 map: this.map,
-                title: model.attributes.title,
-                id: model.attributes.id
-            }));
+                position,
+                title,
+                id
+            });
+
+            marker.addListener('click', (param) => {
+                app.router.navigate(`#${id}`, {trigger: true});
+            });
+            this.markers.push(marker);
         }
 	});
 })();

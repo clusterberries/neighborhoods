@@ -16,11 +16,11 @@ var app = app || {};
 
 		comparator: 'id',
 
-		select(post) {
+		select(id) {
 			// Unselect all places except current
 			for (let i = 0; i < this.length; ++i) {
 				let model = this.models[i];
-				model.select(post === model);
+				model.select(id === model.id);
 			}
 		}
 	});

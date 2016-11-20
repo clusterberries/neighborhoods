@@ -20,13 +20,12 @@ var app = app || {};
 		},
 
 		render () {
+            let id = app.currentPlace && Number.parseInt(app.currentPlace);
+            // Check is current place is active
+            this.model.select(id === this.model.id);
 			this.$el.html(this.template(this.model.toJSON()));
-            this.model.get('selected') && app.places.select(this.model);
-			return this;
-		},
 
-        select () {
-            app.places.select(this.model);
-        }
+			return this;
+		}
 	});
 })(jQuery);

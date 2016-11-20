@@ -12,7 +12,7 @@ var app = app || {};
 		},
 
 		select(selected) {
-			this.save({selected});
+			this.set({selected});
 		}
 	});
 })();
