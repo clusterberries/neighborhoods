@@ -36,8 +36,6 @@ var app = app || {};
 	app.MapView = Backbone.View.extend({
 		el: '#map',
 
-		events: {},
-
 		initialize() {
 			this.$input = $('#input');
             this.markers = [];
@@ -48,7 +46,7 @@ var app = app || {};
 
             this.map = new google.maps.Map(this.$el[0], {
                 center: {lat: 50, lng: 10},
-                zoom: 5
+                zoom: 7
             });
             this.placeService = new google.maps.places.PlacesService(this.map);
 
