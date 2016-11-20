@@ -29,6 +29,20 @@ main {
     display: inline;
 }
 
+/*** INFO MESSAGES ***/
+.info {
+    overflow: hidden;
+    display: flex;
+}
+.info h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+.info .img {
+    margin-right: 10px;
+}
+
 /*** PANEL ***/
 .panel {
     flex-basis: 30%;
@@ -52,6 +66,7 @@ main {
     visibility: visible;
 }
 
+/*** BUTTON ***/
 .btn  {
     align-self: center;
     padding: 7px 14px;
@@ -71,6 +86,7 @@ main {
 	top:1px;
 }
 
+/*** PLACES LIST ***/
 .places-list li {
     margin-bottom: 1px;
     background-color: #f1f1f1;

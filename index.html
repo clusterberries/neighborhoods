@@ -11,7 +11,7 @@
 <body>
 	<main id="app">
 		<div id="map" class="map"></div>
-		<input type="text" id="input" class="name-input">
+		<input type="text" id="input" class="name-input" placeholder="Place title">
 
 		<div id="panel" class="panel">
 			<button id="add-btn" class="add-btn btn">Add a new place</button>
@@ -26,13 +26,10 @@
 	<script type="text/template" id="item-template">
 		<div class="item <%- selected ? 'active' : '' %>">
 			<a href="#<%- id %>"><%- title %></a>
-			<!--<button class="edit-btn btn"></button>
-			<button class="destroy-btn btn"></button>-->
 		</div>
-		<!--<input class="edit" value="<%- title %>">-->
 	</script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA68aP7Kb1Sd67e2oaCVDT2IkvCGuVezQI"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA68aP7Kb1Sd67e2oaCVDT2IkvCGuVezQI&libraries=places"></script>
 	<script src="node_modules/jquery/dist/jquery.js"></script>
 	<script src="node_modules/underscore/underscore.js"></script>
 	<script src="node_modules/backbone/backbone.js"></script>
