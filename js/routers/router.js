@@ -9,7 +9,7 @@ var app = app || {};
 			'*place': 'setPlace'
 		},
 
-		setPlace (param = '') {
+		setPlace(param = '') {
 			app.currentPlace = param;
 		}
 	});

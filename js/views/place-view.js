@@ -14,12 +14,12 @@ var app = app || {};
 			'click a': 'select'
 		},
 
-		initialize () {
+		initialize() {
 			this.listenTo(this.model, 'change', this.render);
 			this.listenTo(this.model, 'destroy', this.remove);
 		},
 
-		render () {
+		render() {
             let id = app.currentPlace && Number.parseInt(app.currentPlace);
             // Check is current place is active
             this.model.select(id === this.model.id);

@@ -12,7 +12,7 @@ var app = app || {};
 			'click #add-btn': 'add'
 		},
 
-		initialize () {
+		initialize() {
 			this.$list = $('#places-list');
 			this.$label = $('#label');
 
@@ -27,7 +27,7 @@ var app = app || {};
 			app.places.fetch({reset: true});
 		},
 
-		add () {
+		add() {
 			this.isAddingMode = !this.isAddingMode;
 			this.$el.toggleClass('adding-mode');
 
@@ -43,19 +43,19 @@ var app = app || {};
 			}
 		},
 
-		addPlace (model) {
+		addPlace(model) {
 			var view = new app.PlaceView({ model });
 			this.$list.append(view.render().el);
 			this.map.addMarker(model);
 		},
 
-		addAll (model) {
+		addAll(model) {
 			app.places.each(this.addPlace, this);
 			// Focus on preset marker
 			app.currentPlace && this.map.toMarker(Number.parseInt(app.currentPlace));
 		},
 
-		route (id) {
+		route(id) {
 			id = id && Number.parseInt(id);
 			app.places.select(id);
 			this.map.toMarker(id);

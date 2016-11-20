@@ -38,7 +38,7 @@ var app = app || {};
 
 		events: {},
 
-		initialize () {
+		initialize() {
 			this.$input = $('#input');
             this.markers = [];
             this.currentMarker = null;
@@ -61,7 +61,7 @@ var app = app || {};
             });
 		},
 
-		toMarker (id) {
+		toMarker(id) {
             if (!id) { return; }
 
             if (this.infoWin) {
@@ -87,7 +87,7 @@ var app = app || {};
             });
         },
 
-		startAdding () {
+		startAdding() {
             this.map.setOptions({draggableCursor: 'crosshair'});
 
             return new Promise((resolve, reject) => {
@@ -133,7 +133,7 @@ var app = app || {};
             });
 		},
 
-        stopAdding () {
+        stopAdding() {
             this.map.setOptions({draggableCursor: 'default'});
             google.maps.event.clearListeners(this.map, 'click');
             this.currentMarker.setMap(null);
@@ -142,7 +142,7 @@ var app = app || {};
             this.$input.off();
         },
 
-        addMarker (model) {
+        addMarker(model) {
             let {position, title, id} = model.attributes;
             let marker = new google.maps.Marker({
                 map: this.map,
