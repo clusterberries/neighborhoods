@@ -163,7 +163,7 @@ var app = app || {};
                     // Set the closest result
                     let place = results[0];
                     content = `Place name: ${place.name}`;
-                    if (place.photos.length) {
+                    if (place.photos && place.photos.length) {
                         let url = place.photos[0].getUrl({
                             maxWidth: 150,
                             maxHeight: 150
